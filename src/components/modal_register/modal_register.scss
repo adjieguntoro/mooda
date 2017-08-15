@@ -1,0 +1,69 @@
+.modal-content {
+    width: 500px;
+}
+
+.login-form-header {
+    padding : 50px;
+    background-color:#4286f4;
+    img {
+        display: block;
+        margin:0px auto;
+        width: 50%;
+    }
+}
+
+
+.login-form-panel {
+    padding:20px;
+    
+    .intro {
+        display: block;
+        margin:0px auto;
+        text-align: center;
+    }
+
+    .login-button {
+        display: block;
+        width:95%;
+        height: 50px;
+        padding: 5px 20px;
+        margin: 10px auto 0px auto;
+        color:#fff;
+    }
+
+    .button-fb {
+        background-color: #3b5998;
+    }
+
+    .button-fb:hover{
+        background-color: #2c4477;        
+    }
+
+    .button-tw {
+        background-color: #55abed;
+    }
+    
+    .button-tw:hover {
+        background-color: #4c9bd8;
+    }
+
+    .button-gl {
+        color: #555;
+    }
+    
+    .button-email {
+        color: #4286f4;
+        border: 0px;
+        
+        span:hover {
+            text-decoration: underline;
+        }
+
+    }
+
+    .tnc {
+        p {
+        color:#777;
+      }
+    }
+}

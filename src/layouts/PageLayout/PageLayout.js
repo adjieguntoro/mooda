@@ -7,11 +7,12 @@ import Navbar from './../../components/Navbar'
 import Opener from './../../components/Opener'
 import Register_Panel from './../../components/Register_Panel'
 import Footer from './../../components/Footer'
-
+import Modal_register from './../../components/modal_register/modal_register'
 
 export const PageLayout = ({ children }) => (
   <div className=''>
     <Navbar />
+    {/* <Modal_register /> */}
     <Opener />
     <Register_Panel />
     <Footer />
