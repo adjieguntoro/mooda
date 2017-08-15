@@ -7,23 +7,17 @@ import Navbar from './../../components/Navbar'
 import Opener from './../../components/Opener'
 import Register_Panel from './../../components/Register_Panel'
 import Footer from './../../components/Footer'
-import Modal_register from './../../components/modal_register/modal_register'
 
 export const PageLayout = ({ children }) => (
   <div className=''>
-    <Navbar />
-    {/* <Modal_register /> */}
-    <Opener />
-    <Register_Panel />
-    <Footer />
-    
-    
-    {/* <IndexLink to='/' activeClassName='page-layout__nav-item--active'>Home</IndexLink>
+     <Navbar />  
+     {/* <IndexLink to='/' activeClassName='page-layout__nav-item--active'>Home</IndexLink>
     {' · '}
-    <Link to='/counter' activeClassName='page-layout__nav-item--active'>Counter</Link>
+    <Link to='/counter' activeClassName='page-layout__nav-item--active'>Counter</Link> */}
     <div className='page-layout__viewport'>
       {children}
-    </div> */}
+    </div>
+    <Footer /> 
   </div>
     // <section className="hero is-primary is-bold">
     //   <div className="hero-body">

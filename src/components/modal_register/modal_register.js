@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import './modal_register.scss'
+import { Link } from 'react-router'
 import Logo_small from './../../images/mooda_small_logo.png'
 import Logo from './../../images/logo_mooda_white_big.png'
+import FacebookLogin from 'react-facebook-login'
+
+const responseFacebook = (response) => {
+  console.log(response);
+};
 
 
 class Modal_register extends Component {
@@ -9,13 +15,11 @@ class Modal_register extends Component {
     
     
     render() {
-        var modal_state = this.props.modal_state;
+        // const modal_state = this.props.modal_state;
         console.log(this.props);
-        if (!modal_state) {
-            return null;
-        }
+        const is_active = this.props.modal_state ? "is-active" : "";
         return(
-            <div className="modal is-active" id="modal">
+            <div className={`modal ${is_active}`} id="modal">
                 <div className="modal-background" onClick={this.props.onClose} ></div>
                 <div className="modal-content">
                     <div className="login-form-header">
@@ -28,18 +32,30 @@ class Modal_register extends Component {
                                 elit
                         </p>
                         <div className="buttonSet">
-                            <button className="button  login-button button-fb">
+                            <FacebookLogin
+                                appId="1966921796909853"
+                                autoLoad
+                                fields="name,email,picture"
+                                callback={responseFacebook}
+                                textButton="Daftar dengan Facebook"
+                                cssClass="button  login-button button-fb"
+                            />
+                            {/* <button className="button  login-button button-fb">
                                 <span>Daftar dengan Facebook</span>
-                            </button>
+                            </button> */}
                             <button className="button  login-button button-tw">
                                 <span>Daftar dengan Twitter</span>
                             </button>
                             <button className="button  login-button button-gl">
+                                <span className="icon">
+                                    <i className="fa fa-home"></i>
+                                </span>
                                 <span>Daftar dengan Google</span>
                             </button>
-                            <button className="button  login-button button-email">
+                            <Link to='/register' className="button  login-button button-email">
+                                
                                 <span>Daftar dengan Email</span>
-                            </button>
+                            </Link>
                         </div>
                         <div className="tnc">
                             <p>
