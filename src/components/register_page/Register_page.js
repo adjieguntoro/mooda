@@ -4,16 +4,16 @@ import Logo_small from './../../images/mooda_small_logo.png'
 
 
 class Register_page extends Component {
-    constructor(props) {
+        constructor(props) {
         super(props);
         this.state = {
             modal_state : false,
             reg_step:1,
 
             users : {
-                email : "adjie@gmail.com",
-                password : "12345",
-                fullname : "Adjie Guntoro",
+                email : "",
+                password : "",
+                fullname : "",
                 birth : {
                     date : "",
                     month : "",
@@ -26,14 +26,10 @@ class Register_page extends Component {
         this.prevHandling = this.prevHandling.bind(this);
         this.onEmailChangeHandler = this.onEmailChangeHandler.bind(this);
         this.onPassChangeHandler = this.onPassChangeHandler.bind(this);
+        this.onFullNameChangeHandler = this.onFullNameChangeHandler.bind(this);        
         this.onBirthDateChangeHandler = this.onBirthDateChangeHandler.bind(this);
         this.onBirthMonthChangeHandler = this.onBirthMonthChangeHandler.bind(this);
         this.onBirthYearChangeHandler = this.onBirthYearChangeHandler.bind(this);
-        
-        
-        
-        
-
     }
 
     onEmailChangeHandler(e){
@@ -54,6 +50,16 @@ class Register_page extends Component {
             users : newState 
         })
     }
+    
+    onFullNameChangeHandler(e){
+        const newFullName = e.target.value
+        const newState = this.state.users
+        newState.fullname = newFullName
+        this.setState({  
+            users : newState 
+        })
+
+    }
 
     onBirthDateChangeHandler(e){
         const newDate = e.target.value
@@ -62,7 +68,6 @@ class Register_page extends Component {
         this.setState({  
             users : newState 
         })
-
     }
 
     onBirthMonthChangeHandler(e){
@@ -72,8 +77,6 @@ class Register_page extends Component {
         this.setState({  
             users : newState 
         })
-        
-
     }
 
     onBirthYearChangeHandler(e){
@@ -83,21 +86,17 @@ class Register_page extends Component {
         this.setState({  
             users : newState 
         })
-        console.log(this.state.users)
     }
 
     nextHandling() {
-        console.log(this.state);
         const newState = this.state.reg_step + 1
         this.setState({
-            
             reg_step:newState 
         })
         
     }
 
     prevHandling() {
-        console.log( this.state.reg_step);
          this.setState(() => {
             const newState = this.state.reg_step - 1;
             return { reg_step:newState }
@@ -138,28 +137,21 @@ class Register_page extends Component {
         const dates = [];
         const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
         const years = [];
-
         for (var i=1970;i<2015;i++) {
             years.push(i);
         }
-
         for (var i=1;i<=31;i++) {
             dates.push(i);
         }
-
         const yearOption = years.map((year, i) =>
             <option value={year} key={i}>{year}</option>
         );
-
         const monthOption = months.map((month, i) =>
             <option value={i+1} key={i}>{month}</option>
         );
-
         const datesOption = dates.map((date, i) =>
             <option value={date} key={i}>{date}</option>
         );
-
-        console.log(years);
 
             return(
                 <div>
@@ -171,6 +163,7 @@ class Register_page extends Component {
                                     type="text"
                                     placeholder="Full Name"
                                     value={this.state.users.fullname}
+                                    onChange={this.onFullNameChangeHandler}
                                     />
                             </div>
                         </div>
