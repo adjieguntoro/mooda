@@ -9,37 +9,123 @@ class Register_page extends Component {
         this.state = {
             modal_state : false,
             reg_step:1,
+
+            users : {
+                email : "adjie@gmail.com",
+                password : "12345",
+                fullname : "Adjie Guntoro",
+                birth : {
+                    date : "",
+                    month : "",
+                    year : ""
+                }
+            }
         };
 
         this.nextHandling = this.nextHandling.bind(this);
+        this.prevHandling = this.prevHandling.bind(this);
+        this.onEmailChangeHandler = this.onEmailChangeHandler.bind(this);
+        this.onPassChangeHandler = this.onPassChangeHandler.bind(this);
+        this.onBirthDateChangeHandler = this.onBirthDateChangeHandler.bind(this);
+        this.onBirthMonthChangeHandler = this.onBirthMonthChangeHandler.bind(this);
+        this.onBirthYearChangeHandler = this.onBirthYearChangeHandler.bind(this);
+        
+        
+        
+        
 
     }
 
+    onEmailChangeHandler(e){
+        this.setState({
+            users : { email :  e.target.value} 
+        })
 
-    first_step = () => {
-            return(
-                <div>
-                    <div className="field">
-                            <label htmlFor="email" className="label">Email</label>
-                            <div className="control">
-                                <input className="input" type="text" placeholder="Email" />
-                            </div>
-                        </div>
-                        <div className="field">
-                            <label htmlFor="password" className="label">Password</label>
-                            <div className="control">
-                                <input className="input" type="password" placeholder="Password" />
-                            </div>
-                        </div>
-                </div>
-            );
-        }
+    }
+
+    onPassChangeHandler(e){
+        this.setState({
+            users : { password :  e.target.value} 
+        })
+
+    }
+
+    onBirthDateChangeHandler(e){
+        const newDate = e.target.value
+        const newState = this.state.users
+        newState.birth.date = newDate
+        this.setState({  
+            users : newState 
+        })
+
+    }
+
+    onBirthMonthChangeHandler(e){
+        const newMonth = e.target.value
+        const newState = this.state.users
+        newState.birth.month = newMonth
+        this.setState({  
+            users : newState 
+        })
+        
+
+    }
+
+    onBirthYearChangeHandler(e){
+        const newYear = e.target.value
+        const newState = this.state.users
+        newState.birth.year = newYear
+        this.setState({  
+            users : newState 
+        })
+        console.log(this.state.users)
+    }
 
     nextHandling() {
-        this.setState((prev, props) => {
-            const newState = this.state.reg_step + 1;
+        const newState = this.state.reg_step + 1
+        this.setState({
+            
+            reg_step:newState 
+        })
+        console.log(this.state);
+    }
+
+    prevHandling() {
+        console.log( this.state.reg_step);
+         this.setState(() => {
+            const newState = this.state.reg_step - 1;
             return { reg_step:newState }
         })
+    }
+
+    first_step = () => {
+        return(
+            <div>
+                <div className="field">
+                        <label htmlFor="email" className="label">Email</label>
+                        <div className="control">
+                            <input className="input" 
+                                    type="text"
+                                    placeholder="Email" 
+                                    value={this.state.users.email}
+                                    onChange={this.onEmailChangeHandler}
+                                    />
+                        </div>
+                    </div>
+                    <div className="field">
+                        <label htmlFor="password" className="label">Password</label>
+                        <div className="control">
+                            <input
+                                className="input"
+                                type="password"
+                                placeholder="Password"
+                                value={this.state.users.password}
+                                onChange={this.onPassChangeHandler}
+                                />
+                        </div>
+                    </div>
+            </div>
+        );
     }
 
     second_step = () => {
@@ -74,7 +160,12 @@ class Register_page extends Component {
                     <div className="field">
                             <label htmlFor="fullname" className="label">Full Name</label>
                             <div className="control">
-                                <input className="input" type="text" placeholder="Full Name" />
+                                <input
+                                    className="input"
+                                    type="text"
+                                    placeholder="Full Name"
+                                    value={this.state.users.fullname}
+                                    />
                             </div>
                         </div>
                         <div className="field">
@@ -83,7 +174,11 @@ class Register_page extends Component {
                                 <div className="column is-4">
                                     <div className="control">
                                         <div className="select">
-                                            <select name="" >
+                                            <select 
+                                                name="birthDate" 
+                                                value={this.state.users.birth.date}
+                                                onChange={this.onBirthDateChangeHandler}
+                                                >
                                                 <option value="">Tanggal</option>
                                                 {datesOption}                                       
                                             </select>
@@ -93,7 +188,12 @@ class Register_page extends Component {
                                 <div className="column is-4">
                                     <div className="control">
                                         <div className="select">
-                                            <select name="" >
+                                            <select
+                                                name="birthDate"
+                                                value={this.state.users.birth.month}
+                                                onChange={this.onBirthMonthChangeHandler}
+                                                
+                                                >
                                                 <option value="">Bulan</option>
                                                 {monthOption}                                        
                                             </select>
@@ -103,9 +203,14 @@ class Register_page extends Component {
                                 <div className="column is-4">
                                     <div className="control">
                                         <div className="select">
-                                            <select name="" >
+                                            <select 
+                                                name="birthYear"
+                                                value={this.state.users.birth.year}
+                                                onChange={this.onBirthYearChangeHandler}
+                                                
+                                                >
+                                                
                                                 <option value="">Tahun</option>
-                                                <option value="1970">1970</option>
                                                 {yearOption}                                        
                                             </select>
                                         </div>
@@ -142,7 +247,10 @@ class Register_page extends Component {
                         <div className="columns">
                             <div className="column is-6">
                                 <div className="control">
-                                    <button className="button is-light">Cancel</button>
+                                    <button
+                                    className="button is-light"
+                                    onClick={this.prevHandling}
+                                    >Cancel</button>
                                 </div>
                             </div>
                             <div className="column is-6">
