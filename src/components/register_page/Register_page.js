@@ -37,17 +37,22 @@ class Register_page extends Component {
     }
 
     onEmailChangeHandler(e){
-        this.setState({
-            users : { email :  e.target.value} 
+        const newEmail = e.target.value
+        const newState = this.state.users
+        newState.email = newEmail
+        this.setState({  
+            users : newState 
         })
 
     }
 
     onPassChangeHandler(e){
-        this.setState({
-            users : { password :  e.target.value} 
+        const newPass = e.target.value
+        const newState = this.state.users
+        newState.password = newPass
+        this.setState({  
+            users : newState 
         })
-
     }
 
     onBirthDateChangeHandler(e){
@@ -82,12 +87,13 @@ class Register_page extends Component {
     }
 
     nextHandling() {
+        console.log(this.state);
         const newState = this.state.reg_step + 1
         this.setState({
             
             reg_step:newState 
         })
-        console.log(this.state);
+        
     }
 
     prevHandling() {
