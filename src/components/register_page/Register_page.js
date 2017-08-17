@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './Register_page.scss'
-import Logo_small from './../../images/mooda_small_logo.png'
-
+import LogoSmall from './../../images/mooda_small_logo.png'
 
 class Register_page extends Component {
         constructor(props) {
@@ -104,6 +103,15 @@ class Register_page extends Component {
     }
 
     first_step = () => {
+        const EmailField = this.state.users.email
+        const PassField = this.state.users.password
+        let IsDisable = true
+        
+        if (EmailField.length > 0 && PassField.length) {
+            IsDisable = false
+        }
+
+        const IsDisabled = IsDisable ? "is-disabled" : ""
         return(
             <div>
                 <div className="field">
@@ -129,121 +137,7 @@ class Register_page extends Component {
                                 />
                         </div>
                     </div>
-            </div>
-        );
-    }
-
-    second_step = () => {
-        const dates = [];
-        const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-        const years = [];
-        for (var i=1970;i<2015;i++) {
-            years.push(i);
-        }
-        for (var i=1;i<=31;i++) {
-            dates.push(i);
-        }
-        const yearOption = years.map((year, i) =>
-            <option value={year} key={i}>{year}</option>
-        );
-        const monthOption = months.map((month, i) =>
-            <option value={i+1} key={i}>{month}</option>
-        );
-        const datesOption = dates.map((date, i) =>
-            <option value={date} key={i}>{date}</option>
-        );
-
-            return(
-                <div>
-                    <div className="field">
-                            <label htmlFor="fullname" className="label">Full Name</label>
-                            <div className="control">
-                                <input
-                                    className="input"
-                                    type="text"
-                                    placeholder="Full Name"
-                                    value={this.state.users.fullname}
-                                    onChange={this.onFullNameChangeHandler}
-                                    />
-                            </div>
-                        </div>
-                        <div className="field">
-                            <div className="label">Tanggal Lahir</div>
-                            <div className="columns">
-                                <div className="column is-4">
-                                    <div className="control">
-                                        <div className="select">
-                                            <select 
-                                                name="birthDate" 
-                                                value={this.state.users.birth.date}
-                                                onChange={this.onBirthDateChangeHandler}
-                                                >
-                                                <option value="">Tanggal</option>
-                                                {datesOption}                                       
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="column is-4">
-                                    <div className="control">
-                                        <div className="select">
-                                            <select
-                                                name="birthDate"
-                                                value={this.state.users.birth.month}
-                                                onChange={this.onBirthMonthChangeHandler}
-                                                
-                                                >
-                                                <option value="">Bulan</option>
-                                                {monthOption}                                        
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="column is-4">
-                                    <div className="control">
-                                        <div className="select">
-                                            <select 
-                                                name="birthYear"
-                                                value={this.state.users.birth.year}
-                                                onChange={this.onBirthYearChangeHandler}
-                                                
-                                                >
-                                                
-                                                <option value="">Tahun</option>
-                                                {yearOption}                                        
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            );
-        }
-
-
-    render() {
-        var elementForm = "";
-        switch(this.state.reg_step){
-            case 1:
-                elementForm = this.first_step()
-                break;
-            case 2:
-                elementForm = this.second_step()
-                break;
-        } 
-
-        
-        
-        return(
-            <div className="container register-form">
-                <div className="columns">
-                    <div className="column is-4 is-offset-4">
-                        <h2 className="title"><img src={Logo_small} alt="mooda"/></h2>
-                        
-                        { elementForm }
-
-                        <div className="columns">
+                    <div className="columns">
                             <div className="column is-6">
                                 <div className="control">
                                     <button
@@ -253,14 +147,158 @@ class Register_page extends Component {
                                 </div>
                             </div>
                             <div className="column is-6">
-                                <div className="control">
+                                <div className={`"control ${IsDisabled} `}>
                                     <button 
                                     className="button is-info"
                                     onClick={this.nextHandling}
+                                    
                                     >Next</button>
                                 </div>
                             </div>
+                    </div>
+            </div>
+        );
+    }
+    SecondStep = () => {
+      const dates = []
+      const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+      const years = []
+      for (var i = 1970; i < 2015; i++) {
+        years.push(i)
+      }
+      for (i = 1; i <= 31; i++) {
+        dates.push(i)
+      }
+      const yearOption = years.map((year, i) =>
+        <option value={year} key={i}>{year}</option>
+      )
+      const monthOption = months.map((month, i) =>
+        <option value={i + 1} key={i}>{month}</option>
+      )
+      const datesOption = dates.map((date, i) =>
+        <option value={date} key={i}>{date}</option>
+      )
+      const FullNameField = this.state.users.fullname
+      const BirtDateField = this.state.users.birth.date
+      const BirtMonthField = this.state.users.birth.month
+      const BirtYearField = this.state.users.birth.year
+
+      let IsDisable = true
+      if (FullNameField.length > 3 && BirtDateField !== '' && BirtMonthField !== '' && BirtYearField !== '') {
+        IsDisable = false
+      }
+
+      const IsDisabled = IsDisable ? 'is-disabled' : ''
+      return (
+        <div>
+          <div className="field">
+                    <label htmlFor="fullname" className="label">Full Name</label>
+                    <div className="control">
+                        <input
+                            className="input"
+                            type="text"
+                            placeholder="Full Name"
+                            value={this.state.users.fullname}
+                            onChange={this.onFullNameChangeHandler}
+                            />
+                    </div>
+                </div>
+                <div className="field">
+                    <div className="label">Tanggal Lahir</div>
+                    <div className="columns">
+                        <div className="column is-4">
+                            <div className="control">
+                                <div className="select">
+                                    <select 
+                                        name="birthDate" 
+                                        value={this.state.users.birth.date}
+                                        onChange={this.onBirthDateChangeHandler}
+                                        >
+                                        <option value="">Tanggal</option>
+                                        {datesOption}                                       
+                                    </select>
+                                </div>
+                            </div>
                         </div>
+                        <div className="column is-4">
+                            <div className="control">
+                                <div className="select">
+                                    <select
+                                        name="birthDate"
+                                        value={this.state.users.birth.month}
+                                        onChange={this.onBirthMonthChangeHandler}
+                                        
+                                        >
+                                        <option value="">Bulan</option>
+                                        {monthOption}                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="column is-4">
+                            <div className="control">
+                                <div className="select">
+                                    <select 
+                                        name="birthYear"
+                                        value={this.state.users.birth.year}
+                                        onChange={this.onBirthYearChangeHandler}
+                                        
+                                        >
+                                        
+                                        <option value="">Tahun</option>
+                                        {yearOption}                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-6">
+                            <div className="control">
+                                <button
+                                className="button is-light"
+                                onClick={this.prevHandling}
+                                >Cancel</button>
+                            </div>
+                        </div>
+                        <div className="column is-6">
+                            <div className={`"control ${IsDisabled} `}>
+                                <button 
+                                className="button is-info"
+                                onClick={this.nextHandling}
+                                
+                                >Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        );
+    }
+
+
+    render() {
+        var elementForm = "";
+        switch(this.state.reg_step){
+            case 1:
+                elementForm = this.first_step()
+                break;
+            case 2:
+                elementForm = this.SecondStep()
+                break;
+        } 
+
+        
+        
+        return(
+            <div className="container register-form">
+                <div className="columns">
+                    <div className="column is-4 is-offset-4">
+                        <h2 className="title"><img src={LogoSmall} alt="mooda"/></h2>
+                        
+                        { elementForm }
+
+                        
                     </div>
                 </div>
             </div>
