@@ -1,0 +1,29 @@
+.footer-menu {
+    
+
+    ul {
+        list-style: none;
+        
+        li {
+            float: left;
+            margin-right:20px;
+        }
+        
+        a {
+            color: #999;
+        }
+        
+        a:hover{
+            text-decoration: none;
+            color: #555;
+        }
+    }
+
+    .social-media {
+        float: right;
+        img {
+            width: 60%;
+        }
+    }
+}
+

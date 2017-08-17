@@ -4,17 +4,20 @@ import PropTypes from 'prop-types'
 import './PageLayout.scss'
 import 'bulma-scss'
 import Navbar from './../../components/Navbar'
+import Opener from './../../components/Opener'
+import Register_Panel from './../../components/Register_Panel'
+import Footer from './../../components/Footer'
 
 export const PageLayout = ({ children }) => (
-  <div className='container'>
-    <Navbar />
-    <h1>React Redux Starter Kit</h1>
-    <IndexLink to='/' activeClassName='page-layout__nav-item--active'>Home</IndexLink>
+  <div className=''>
+     <Navbar />  
+     {/* <IndexLink to='/' activeClassName='page-layout__nav-item--active'>Home</IndexLink>
     {' · '}
-    <Link to='/counter' activeClassName='page-layout__nav-item--active'>Counter</Link>
+    <Link to='/counter' activeClassName='page-layout__nav-item--active'>Counter</Link> */}
     <div className='page-layout__viewport'>
       {children}
     </div>
+    <Footer /> 
   </div>
     // <section className="hero is-primary is-bold">
     //   <div className="hero-body">
