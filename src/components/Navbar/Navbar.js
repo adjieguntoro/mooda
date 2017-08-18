@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { IndexLink, Link } from 'react-router'
+import { Link } from 'react-router'
 import Logo from './../../images/mooda_logo_grey.png'
 import './Navbar.scss'
 
@@ -17,8 +17,8 @@ class Navbar extends Component {
             <span />
           </div>
         </div>
-        <div id='navMenuExample' className='navbar-menu'>
-        </div>
+        {/* <div id='navMenuExample' className='navbar-menu'>
+        </div> */}
       </nav>
     )
   }

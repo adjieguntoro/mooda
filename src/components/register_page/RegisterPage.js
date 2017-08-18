@@ -112,8 +112,7 @@ class RegisterPage extends Component {
               type='text'
               placeholder='Email'
               value={this.state.users.email}
-              onChange={this.onEmailChangeHandler}
-                                />
+              onChange={this.onEmailChangeHandler} />
           </div>
         </div>
         <div className='field'>
@@ -124,8 +123,7 @@ class RegisterPage extends Component {
               type='password'
               placeholder='Password'
               value={this.state.users.password}
-              onChange={this.onPassChangeHandler}
-                            />
+              onChange={this.onPassChangeHandler} />
           </div>
         </div>
       </div>
@@ -205,7 +203,9 @@ class RegisterPage extends Component {
                   <select
                     name='birthYear'
                     value={this.state.users.birth.year}
-                    onChange={this.onBirthYearChangeHandler}>
+                    onChange={this.onBirthYearChangeHandler}
+                                        >
+
                     <option value=''>Tahun</option>
                     {yearOption}
                   </select>
