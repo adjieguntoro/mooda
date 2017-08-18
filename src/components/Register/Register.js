@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import './Register.scss'
 
 class Register extends Component {
@@ -296,6 +296,9 @@ class Register extends Component {
   render () {
     var elementForm = ''
     switch (this.state.reg_step) {
+      case 0:
+        browserHistory.push('/')
+        break
       case 1:
         elementForm = this.firstStep()
         break
@@ -303,7 +306,7 @@ class Register extends Component {
         elementForm = this.secondStep()
         break
       case 3:
-        elementForm = this.ThankYouStep()
+        browserHistory.push('/thankyou')
     }
 
     return (

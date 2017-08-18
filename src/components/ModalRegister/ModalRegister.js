@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
 import './ModalRegister.scss'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import PropTypes from 'prop-types'
 import Logo from './../../images/logo_mooda_white_big.png'
-import FacebookLogin from './../../facebook/facebook'
+import FacebookLogin from 'react-facebook-login'
+import GoogleLogin from 'react-google-login'
 
 const responseFacebook = (response) => {
   console.log(response)
+  browserHistory.push('thankyou')
+}
+
+const responseGoogle = (response) => {
+  console.log(response)
+  browserHistory.push('thankyou')  
 }
 
 class ModalRegister extends Component {
@@ -27,20 +34,17 @@ class ModalRegister extends Component {
             <div className='buttonSet'>
               <FacebookLogin
                 appId='1966921796909853'
-                
                 fields='name,email,picture'
                 callback={responseFacebook}
                 textButton='Daftar dengan Facebook'
                 cssClass='button  login-button button-fb' />
-              <button className='button  login-button button-tw'>
-                <span>Daftar dengan Twitter</span>
-              </button>
-              <button className='button  login-button button-gl'>
-                <span className='icon'>
-                  <i className='fa fa-home' />
-                </span>
-                <span>Daftar dengan Google</span>
-              </button>
+              <GoogleLogin
+                clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
+                buttonText='Daftar dengan Google'
+                className='button login-button button-gl'
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                  />
               <Link to='/register' className='button  login-button button-email'>
                 <span>Daftar dengan Email</span>
               </Link>
