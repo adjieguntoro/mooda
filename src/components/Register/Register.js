@@ -274,7 +274,9 @@ class Register extends Component {
       <div>
         <article className='message is-success'>
           <div className='message-body'>
-          Terima kasih Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum exercitationem, minima alias iure, commodi enim a qui eligendi voluptate provident nihil quae maiores vel eveniet magnam, unde reprehenderit dolore in!
+          Terima kasih Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Voluptatum exercitationem, minima alias iure, commodi enim a qui eligendi
+          voluptate provident nihil quae maiores vel eveniet magnam, unde reprehenderit dolore in!
           </div>
         </article>
         <div className='columns'>

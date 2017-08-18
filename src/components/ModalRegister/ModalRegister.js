@@ -3,7 +3,7 @@ import './ModalRegister.scss'
 import { Link } from 'react-router'
 import PropTypes from 'prop-types'
 import Logo from './../../images/logo_mooda_white_big.png'
-import FacebookLogin from 'react-facebook-login'
+import FacebookLogin from './../../facebook/facebook'
 
 const responseFacebook = (response) => {
   console.log(response)
@@ -27,7 +27,7 @@ class ModalRegister extends Component {
             <div className='buttonSet'>
               <FacebookLogin
                 appId='1966921796909853'
-                autoLoad
+                
                 fields='name,email,picture'
                 callback={responseFacebook}
                 textButton='Daftar dengan Facebook'
