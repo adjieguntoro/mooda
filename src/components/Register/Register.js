@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import './Register.scss'
 
 class Register extends Component {
@@ -274,7 +274,9 @@ class Register extends Component {
       <div>
         <article className='message is-success'>
           <div className='message-body'>
-          Terima kasih Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum exercitationem, minima alias iure, commodi enim a qui eligendi voluptate provident nihil quae maiores vel eveniet magnam, unde reprehenderit dolore in!
+          Terima kasih Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Voluptatum exercitationem, minima alias iure, commodi enim a qui eligendi
+          voluptate provident nihil quae maiores vel eveniet magnam, unde reprehenderit dolore in!
           </div>
         </article>
         <div className='columns'>
@@ -294,6 +296,9 @@ class Register extends Component {
   render () {
     var elementForm = ''
     switch (this.state.reg_step) {
+      case 0:
+        browserHistory.push('/')
+        break
       case 1:
         elementForm = this.firstStep()
         break
@@ -301,7 +306,7 @@ class Register extends Component {
         elementForm = this.secondStep()
         break
       case 3:
-        elementForm = this.ThankYouStep()
+        browserHistory.push('/thankyou')
     }
 
     return (
