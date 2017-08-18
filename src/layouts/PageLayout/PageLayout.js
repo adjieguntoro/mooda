@@ -1,23 +1,22 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
 import PropTypes from 'prop-types'
 import './PageLayout.scss'
 import 'bulma-scss'
 import Navbar from './../../components/Navbar'
-import Opener from './../../components/Opener'
-import Register_Panel from './../../components/Register_Panel'
+// import Opener from './../../components/Opener'
+// import RegisterPanel from './../../components/RegisterPanel'
 import Footer from './../../components/Footer'
 
 export const PageLayout = ({ children }) => (
   <div className=''>
-     <Navbar />  
-     {/* <IndexLink to='/' activeClassName='page-layout__nav-item--active'>Home</IndexLink>
+    <Navbar />
+    {/* <IndexLink to='/' activeClassName='page-layout__nav-item--active'>Home</IndexLink>
     {' · '}
     <Link to='/counter' activeClassName='page-layout__nav-item--active'>Counter</Link> */}
     <div className='page-layout__viewport'>
       {children}
     </div>
-    <Footer /> 
+    <Footer />
   </div>
     // <section className="hero is-primary is-bold">
     //   <div className="hero-body">

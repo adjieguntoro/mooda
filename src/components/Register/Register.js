@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import './Register_page.scss'
-import LogoSmall from './../../images/mooda_small_logo.png'
+import { Link } from 'react-router'
+import './Register.scss'
 
-class RegisterPage extends Component {
+class Register extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -83,19 +83,17 @@ class RegisterPage extends Component {
     this.setState({
       users : newState
     })
-    console.log(this.state.users)
   }
 
-  nextHandling = () => {
-    console.log(this.state)
+  nextHandling () {
     const newState = this.state.reg_step + 1
     this.setState({
       reg_step:newState
     })
   }
 
-  prevHandling = () => {
-    console.log(this.state.reg_step)
+  prevHandling () {
+
     this.setState(() => {
       const newState = this.state.reg_step - 1
       return { reg_step:newState }
@@ -103,6 +101,15 @@ class RegisterPage extends Component {
   }
 
   firstStep = () => {
+    const EmailField = this.state.users.email
+    const PassField = this.state.users.password
+    let IsDisable = true
+
+    if (EmailField.length > 0 && PassField.length) {
+      IsDisable = false
+    }
+
+    const IsDisabled = IsDisable ? 'is-disabled' : ''
     return (
       <div>
         <div className='field'>
@@ -112,7 +119,8 @@ class RegisterPage extends Component {
               type='text'
               placeholder='Email'
               value={this.state.users.email}
-              onChange={this.onEmailChangeHandler} />
+              onChange={this.onEmailChangeHandler}
+                                    />
           </div>
         </div>
         <div className='field'>
@@ -126,35 +134,59 @@ class RegisterPage extends Component {
               onChange={this.onPassChangeHandler} />
           </div>
         </div>
+        <div className='columns'>
+          <div className='column is-6'>
+            <div className='control'>
+              <button
+                className='button is-light'
+                onClick={this.prevHandling}>
+                Cancel
+              </button>
+            </div>
+          </div>
+          <div className='column is-6'>
+            <div className={`"control ${IsDisabled} `}>
+              <button
+                className='button is-info'
+                onClick={this.nextHandling}>
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
-
   secondStep = () => {
     const dates = []
     const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
     const years = []
-
-    for (let i = 1970; i < 2015; i++) {
+    for (var i = 1970; i < 2015; i++) {
       years.push(i)
     }
-
-    for (let i = 1; i <= 31; i++) {
+    for (i = 1; i <= 31; i++) {
       dates.push(i)
     }
-
     const yearOption = years.map((year, i) =>
       <option value={year} key={i}>{year}</option>
     )
-
     const monthOption = months.map((month, i) =>
       <option value={i + 1} key={i}>{month}</option>
     )
-
     const datesOption = dates.map((date, i) =>
       <option value={date} key={i}>{date}</option>
     )
+    const FullNameField = this.state.users.fullname
+    const BirtDateField = this.state.users.birth.date
+    const BirtMonthField = this.state.users.birth.month
+    const BirtYearField = this.state.users.birth.year
 
+    let IsDisable = true
+    if (FullNameField.length > 3 && BirtDateField !== '' && BirtMonthField !== '' && BirtYearField !== '') {
+      IsDisable = false
+    }
+
+    const IsDisabled = IsDisable ? 'is-disabled' : ''
     return (
       <div>
         <div className='field'>
@@ -165,7 +197,8 @@ class RegisterPage extends Component {
               type='text'
               placeholder='Full Name'
               value={this.state.users.fullname}
-              onChange={this.onFullNameChangeHandler} />
+              onChange={this.onFullNameChangeHandler}
+                            />
           </div>
         </div>
         <div className='field'>
@@ -203,14 +236,54 @@ class RegisterPage extends Component {
                   <select
                     name='birthYear'
                     value={this.state.users.birth.year}
-                    onChange={this.onBirthYearChangeHandler}
-                                        >
-
+                    onChange={this.onBirthYearChangeHandler}>
                     <option value=''>Tahun</option>
                     {yearOption}
                   </select>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className='columns'>
+            <div className='column is-6'>
+              <div className='control'>
+                <button
+                  className='button is-light'
+                  onClick={this.prevHandling}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+            <div className='column is-6'>
+              <div className={`"control ${IsDisabled} `}>
+                <button
+                  className='button is-info'
+                  onClick={this.nextHandling}>
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  ThankYouStep = () => {
+    return (
+      <div>
+        <article className='message is-success'>
+          <div className='message-body'>
+          Terima kasih Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum exercitationem, minima alias iure, commodi enim a qui eligendi voluptate provident nihil quae maiores vel eveniet magnam, unde reprehenderit dolore in!
+          </div>
+        </article>
+        <div className='columns'>
+          <div className='column is-3'>
+            <div className='control'>
+              <Link to='/'
+                className='button is-info'>
+                Kembali Ke Home
+              </Link>
             </div>
           </div>
         </div>
@@ -219,7 +292,7 @@ class RegisterPage extends Component {
   }
 
   render () {
-    let elementForm
+    var elementForm = ''
     switch (this.state.reg_step) {
       case 1:
         elementForm = this.firstStep()
@@ -227,35 +300,15 @@ class RegisterPage extends Component {
       case 2:
         elementForm = this.secondStep()
         break
+      case 3:
+        elementForm = this.ThankYouStep()
     }
 
     return (
       <div className='container register-form'>
         <div className='columns'>
           <div className='column is-4 is-offset-4'>
-            <h2 className='title'>
-              <img src={LogoSmall} alt='mooda' />
-            </h2>
             { elementForm }
-            <div className='columns'>
-              <div className='column is-6'>
-                <div className='control'>
-                  <button
-                    className='button is-light'
-                    onClick={this.prevHandling}
-                            >Cancel</button>
-                </div>
-              </div>
-              <div className='column is-6'>
-                <div className='control'>
-                  <button
-                    className='button is-info'
-                    onClick={this.nextHandling}>
-                    Next
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -263,4 +316,4 @@ class RegisterPage extends Component {
   }
 }
 
-export default RegisterPage
+export default Register
