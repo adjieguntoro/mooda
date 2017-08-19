@@ -216,7 +216,7 @@ class Register extends Component {
           </div>
           <p className={`help ${this.state.validate.pass.class}`}> {this.state.validate.pass.msg}</p>          
         </div>
-        <div className='columns'>
+        <div className='columns is-mobile'>
           <div className='column is-6'>
             <div className='control'>
               <button
@@ -286,7 +286,7 @@ class Register extends Component {
         </div>
         <div className='field'>
           <div className='label'>Tanggal Lahir</div>
-          <div className='columns'>
+          <div className='columns is-mobile'>
             <div className='column is-4'>
               <div className='control'>
                 <div className='select'>
@@ -327,7 +327,7 @@ class Register extends Component {
               </div>
             </div>
           </div>
-          <div className='columns'>
+          <div className='columns is-mobile'>
             <div className='column is-6'>
               <div className='control'>
                 <button
