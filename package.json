@@ -13,6 +13,47 @@
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix"
   },
+  "betterScript": {
+    "compile": {
+      "command": "node bin/compile",
+      "env": {
+        "DEBUG": "app:*"
+      }
+    },
+    "dev": {
+      "command": "nodemon ./bin/server.js ",
+      "env": {
+        "NODE_ENV": "development",
+        "DEBUG": "app:*"
+      }
+    },
+    "deploy": {
+      "command": "npm run test && npm run clean && npm run compile",
+      "env": {
+        "DEBUG": "app:*"
+      }
+    },
+    "start": {
+      "command": "node bin/server",
+      "env": {
+        "DEBUG": "app:*"
+      }
+    },    
+    "deploy:dev": {
+      "command": "npm run deploy",
+      "env": {
+        "NODE_ENV": "development",
+        "DEBUG": "app:*"
+      }
+    },
+    "deploy:prod": {
+      "command": "npm run deploy",
+      "env": {
+        "NODE_ENV": "production",
+        "DEBUG": "app:*"
+      }
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/davezuko/react-redux-starter-kit.git"
@@ -20,6 +61,7 @@
   "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
   "license": "MIT",
   "dependencies": {
+    "better-npm-run": "^0.1.0",
     "bootstrap": "^4.0.0-alpha",
     "bulma": "^0.5.1",
     "bulma-scss": "^0.3.0-cc1",
