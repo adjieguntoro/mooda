@@ -13,7 +13,7 @@ const responseFacebook = (response) => {
 
 const responseGoogle = (response) => {
   console.log(response)
-  browserHistory.push('thankyou')  
+  browserHistory.push('thankyou')
 }
 
 class ModalRegister extends Component {
@@ -29,7 +29,7 @@ class ModalRegister extends Component {
           <div className='login-form-panel'>
             <p className='intro'>
               Daftar MOODA <br />
-              lorem ipsum di dolor amet consectetur adipisicing elit
+              
             </p>
             <div className='buttonSet'>
               <FacebookLogin
@@ -50,12 +50,9 @@ class ModalRegister extends Component {
               </Link>
             </div>
             <div className='tnc'>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit. Ullam dolorem sint perspiciatis.
-              Accusantium doloremque voluptate tempora
-              obcaecati est, sed enim nemo consequuntur,
-              aliquid vero assumenda fugiat perferendis sunt
-              consectetur quis.
+              <p>Dengan membuat akun di Mooda, kamu berkesempatan untuk menjadi orang pertama yang
+                diberitahukan ketika Mooda siap untuk kamu gunakan. Kami akan mengirimkan kabar baik selanjutnya
+                melalui alamat email yang kamu daftarkan.
               </p>
             </div>
           </div>
