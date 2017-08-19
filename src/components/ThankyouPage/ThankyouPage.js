@@ -11,21 +11,15 @@ class ThankyouPage extends Component {
             <div>
               <article className='message is-success'>
                 <div className='message-body'>
-                Terima kasih Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatum exercitationem, minima alias iure, commodi enim a qui eligendi
-                voluptate provident nihil quae maiores vel eveniet magnam, unde reprehenderit dolore in!
-                </div>
-              </article>
-              <div className='columns'>
-                <div className='column is-3'>
-                  <div className='control'>
-                    <Link to='/'
-                      className='button is-info'>
+                Terima kasih sudah mendaftar <br/>
+                Kamu berkesempatan untuk menjadi orang pertama yang
+                diberitahukan ketika Mooda siap untuk kamu gunakan. Kami akan mengirimkan kabar baik selanjutnya
+                melalui alamat email yang kamu daftarkan. <Link to='/'
+                      className=' is-info'>
                       Kembali Ke Home
                     </Link>
-                  </div>
                 </div>
-              </div>
+              </article>
             </div>
           </div>
         </div>
