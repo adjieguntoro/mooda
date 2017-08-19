@@ -1,9 +1,13 @@
+.footer {
+    margin-top:25px;
+}
+
 .footer-menu {
     
 
     ul {
         list-style: none;
-        
+        margin-top:20px;
         li {
             float: left;
             margin-right:20px;
@@ -20,7 +24,7 @@
     }
 
     .social-media {
-        float: right;
+        // float: right;
         img {
             width: 60%;
         }

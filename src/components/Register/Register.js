@@ -8,7 +8,20 @@ class Register extends Component {
     this.state = {
       modal_state : false,
       reg_step:1,
-
+      validate : {
+        email : {
+          class : '',
+          msg : ''
+        },
+        pass : {
+          class : '',
+          msg : ''
+        },
+        fullname : {
+          class : '',
+          msg : ''
+        }
+      },
       users : {
         email : '',
         password : '',
@@ -38,6 +51,23 @@ class Register extends Component {
     this.setState({
       users : newState
     })
+    if (this.validateEmail(newEmail)) {
+      console.log('email valid')
+      const newState = this.state.validate
+      newState.email.class = 'is-info'
+      newState.email.msg = 'Email Valid'
+      this.setState({
+        validate : newState
+      })
+    } else {
+      console.log('email tidak valid')
+      const newState = this.state.validate
+      newState.email.class = 'is-danger'
+      newState.email.msg = 'Email Tidak Valid'
+      this.setState({
+        validate : newState
+      })
+    }
   }
 
   onPassChangeHandler (e) {
@@ -47,6 +77,21 @@ class Register extends Component {
     this.setState({
       users : newState
     })
+    if (this.validatePass(newPass)) {
+      const newState = this.state.validate
+      newState.pass.class = 'is-info'
+      newState.pass.msg = 'Password Ok'
+      this.setState({
+        validate : newState
+      })
+    } else {
+      const newState = this.state.validate
+      newState.pass.class = 'is-danger'
+      newState.pass.msg = 'Password minimal 8 karakter'
+      this.setState({
+        validate : newState
+      })
+    }
   }
 
   onFullNameChangeHandler (e) {
@@ -56,6 +101,21 @@ class Register extends Component {
     this.setState({
       users : newState
     })
+    if (this.validateName(newFullName)) {
+      const newState = this.state.validate
+      newState.fullname.class = 'is-info'
+      newState.fullname.msg = ''
+      this.setState({
+        validate : newState
+      })
+    } else {
+      const newState = this.state.validate
+      newState.pass.class = 'is-danger'
+      newState.pass.msg = 'Nama harus diisi'
+      this.setState({
+        validate : newState
+      })
+    }
   }
 
   onBirthDateChangeHandler (e) {
@@ -93,11 +153,31 @@ class Register extends Component {
   }
 
   prevHandling () {
-
     this.setState(() => {
       const newState = this.state.reg_step - 1
       return { reg_step:newState }
     })
+  }
+
+  validateEmail (email) {
+    const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/
+    return re.test(email)
+  }
+
+  validatePass (Pass) {
+    if (Pass.length < 8) {
+      return false
+    } else {
+      return true
+    }
+  }
+
+  validateName (FullName) {
+    if (FullName == '') {
+      return false
+    } else {
+      return true
+    }
   }
 
   firstStep = () => {
@@ -105,7 +185,7 @@ class Register extends Component {
     const PassField = this.state.users.password
     let IsDisable = true
 
-    if (EmailField.length > 0 && PassField.length) {
+    if (EmailField.length > 0 && this.validateEmail(EmailField) && PassField.length >= 8) {
       IsDisable = false
     }
 
@@ -114,27 +194,29 @@ class Register extends Component {
       <div>
         <div className='field'>
           <label htmlFor='email' className='label'>Email</label>
-          <div className='control'>
-            <input className='input'
+          <div className='control has-icons-left'>
+            <input className={`input ${this.state.validate.email.class}`}
               type='text'
               placeholder='Email'
               value={this.state.users.email}
               onChange={this.onEmailChangeHandler}
-                                    />
+              />
           </div>
+          <p className={`help ${this.state.validate.email.class}`}> {this.state.validate.email.msg}</p>
         </div>
         <div className='field'>
           <label htmlFor='password' className='label'>Password</label>
           <div className='control'>
             <input
-              className='input'
+              className={`input ${this.state.validate.pass.class}`}
               type='password'
               placeholder='Password'
               value={this.state.users.password}
               onChange={this.onPassChangeHandler} />
           </div>
+          <p className={`help ${this.state.validate.pass.class}`}> {this.state.validate.pass.msg}</p>
         </div>
-        <div className='columns'>
+        <div className='columns is-mobile'>
           <div className='column is-6'>
             <div className='control'>
               <button
@@ -191,7 +273,7 @@ class Register extends Component {
       <div>
         <div className='field'>
           <label htmlFor='fullname' className='label'>Full Name</label>
-          <div className='control'>
+          <div className={`control ${this.state.validate.fullname.class}`}>
             <input
               className='input'
               type='text'
@@ -200,10 +282,11 @@ class Register extends Component {
               onChange={this.onFullNameChangeHandler}
                             />
           </div>
+          <p className={`help ${this.state.validate.fullname.class}`}> {this.state.validate.fullname.msg}</p>
         </div>
         <div className='field'>
           <div className='label'>Tanggal Lahir</div>
-          <div className='columns'>
+          <div className='columns is-mobile'>
             <div className='column is-4'>
               <div className='control'>
                 <div className='select'>
@@ -244,7 +327,7 @@ class Register extends Component {
               </div>
             </div>
           </div>
-          <div className='columns'>
+          <div className='columns is-mobile'>
             <div className='column is-6'>
               <div className='control'>
                 <button
