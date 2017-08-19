@@ -63,7 +63,7 @@ class Register extends Component {
       console.log('email tidak valid')
       const newState = this.state.validate
       newState.email.class = 'is-danger'
-      newState.email.msg = 'Email Tidak Valid'      
+      newState.email.msg = 'Email Tidak Valid'
       this.setState({
         validate : newState
       })
@@ -80,14 +80,14 @@ class Register extends Component {
     if (this.validatePass(newPass)) {
       const newState = this.state.validate
       newState.pass.class = 'is-info'
-      newState.pass.msg = 'Password Ok'      
+      newState.pass.msg = 'Password Ok'
       this.setState({
         validate : newState
       })
     } else {
       const newState = this.state.validate
       newState.pass.class = 'is-danger'
-      newState.pass.msg = 'Password minimal 8 karakter'      
+      newState.pass.msg = 'Password minimal 8 karakter'
       this.setState({
         validate : newState
       })
@@ -104,14 +104,14 @@ class Register extends Component {
     if (this.validateName(newFullName)) {
       const newState = this.state.validate
       newState.fullname.class = 'is-info'
-      newState.fullname.msg = ""      
+      newState.fullname.msg = ''
       this.setState({
         validate : newState
       })
     } else {
       const newState = this.state.validate
       newState.pass.class = 'is-danger'
-      newState.pass.msg = 'Nama harus diisi'      
+      newState.pass.msg = 'Nama harus diisi'
       this.setState({
         validate : newState
       })
@@ -160,7 +160,7 @@ class Register extends Component {
   }
 
   validateEmail (email) {
-    const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/   
+    const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/
     return re.test(email)
   }
 
@@ -173,7 +173,7 @@ class Register extends Component {
   }
 
   validateName (FullName) {
-    if (FullName == ''){
+    if (FullName == '') {
       return false
     } else {
       return true
@@ -214,7 +214,7 @@ class Register extends Component {
               value={this.state.users.password}
               onChange={this.onPassChangeHandler} />
           </div>
-          <p className={`help ${this.state.validate.pass.class}`}> {this.state.validate.pass.msg}</p>          
+          <p className={`help ${this.state.validate.pass.class}`}> {this.state.validate.pass.msg}</p>
         </div>
         <div className='columns is-mobile'>
           <div className='column is-6'>
@@ -282,7 +282,7 @@ class Register extends Component {
               onChange={this.onFullNameChangeHandler}
                             />
           </div>
-          <p className={`help ${this.state.validate.fullname.class}`}> {this.state.validate.fullname.msg}</p>          
+          <p className={`help ${this.state.validate.fullname.class}`}> {this.state.validate.fullname.msg}</p>
         </div>
         <div className='field'>
           <div className='label'>Tanggal Lahir</div>

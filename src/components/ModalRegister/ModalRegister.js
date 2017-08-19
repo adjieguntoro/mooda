@@ -13,7 +13,7 @@ const responseFacebook = (response) => {
 
 const responseGoogle = (response) => {
   console.log(response)
-  browserHistory.push('thankyou')  
+  browserHistory.push('thankyou')
 }
 
 class ModalRegister extends Component {

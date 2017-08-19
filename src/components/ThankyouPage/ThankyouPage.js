@@ -3,7 +3,6 @@ import { Link } from 'react-router'
 import './ThankyouPage.scss'
 
 class ThankyouPage extends Component {
-
   render () {
     return (
       <div className='container register-form'>
