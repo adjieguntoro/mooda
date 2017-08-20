@@ -24,7 +24,7 @@ class RegisterPanel extends Component {
   render () {
     return (
       <section className='is-white ' id='register-panel'>
-        <ModalRegister modal_state={this.state.modal_state} onClose={this.toogleModal} />
+        <ModalRegister modal_state={this.state.modal_state} onClose={this.toogleModal}/>
         <div className='container'>
           <div className='colums '>
             <div className='column is-8 is-offset-2'>

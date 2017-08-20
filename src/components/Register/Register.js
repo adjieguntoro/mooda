@@ -10,6 +10,7 @@ class Register extends Component {
       reg_step:1,
       validate : {
         email : {
+          onblur: false,
           class : '',
           msg : ''
         },
@@ -17,7 +18,7 @@ class Register extends Component {
           class : '',
           msg : ''
         },
-        fullname : {
+        firstname : {
           class : '',
           msg : ''
         }
@@ -25,7 +26,8 @@ class Register extends Component {
       users : {
         email : '',
         password : '',
-        fullname : '',
+        firstname : '',
+        lastname : '',
         birth : {
           date : '',
           month : '',
@@ -38,7 +40,7 @@ class Register extends Component {
     this.prevHandling = this.prevHandling.bind(this)
     this.onEmailChangeHandler = this.onEmailChangeHandler.bind(this)
     this.onPassChangeHandler = this.onPassChangeHandler.bind(this)
-    this.onFullNameChangeHandler = this.onFullNameChangeHandler.bind(this)
+    this.onFirstNameChangeHandler = this.onFirstNameChangeHandler.bind(this)
     this.onBirthDateChangeHandler = this.onBirthDateChangeHandler.bind(this)
     this.onBirthMonthChangeHandler = this.onBirthMonthChangeHandler.bind(this)
     this.onBirthYearChangeHandler = this.onBirthYearChangeHandler.bind(this)
@@ -51,6 +53,23 @@ class Register extends Component {
     this.setState({
       users : newState
     })
+    if (this.state.validate.email.onblur) {
+      this.EmailValidated(newEmail)
+    }
+  }
+
+  onEmailOnBlur = (e) => {
+    const newState = this.state.validate.email
+    console.log(newState)
+    newState.onblur = !newState.onblur
+    this.setState({
+      validate : newState
+    })
+    const newEmail = e.target.value
+    this.EmailValidated(newEmail)
+  }
+
+  EmailValidated = (newEmail) => {
     if (this.validateEmail(newEmail)) {
       console.log('email valid')
       const newState = this.state.validate
@@ -60,7 +79,6 @@ class Register extends Component {
         validate : newState
       })
     } else {
-      console.log('email tidak valid')
       const newState = this.state.validate
       newState.email.class = 'is-danger'
       newState.email.msg = 'Email Tidak Valid'
@@ -94,28 +112,38 @@ class Register extends Component {
     }
   }
 
-  onFullNameChangeHandler (e) {
-    const newFullName = e.target.value
+  onFirstNameChangeHandler = (e) => {
+    let newFirstName = e.target.value
+    newFirstName = newFirstName.charAt(0).toUpperCase() + newFirstName.slice(1) 
     const newState = this.state.users
-    newState.fullname = newFullName
+    newState.firstname = newFirstName
     this.setState({
       users : newState
     })
-    if (this.validateName(newFullName)) {
+    if (this.validateName(newFirstName)) {
       const newState = this.state.validate
-      newState.fullname.class = 'is-info'
-      newState.fullname.msg = ''
+      newState.firstname.class = 'is-info'
+      newState.firstname.msg = ''
       this.setState({
         validate : newState
       })
     } else {
       const newState = this.state.validate
-      newState.pass.class = 'is-danger'
-      newState.pass.msg = 'Nama harus diisi'
+      newState.firstname.class = 'is-danger'
+      newState.firstname.msg = 'Nama harus diisi'
       this.setState({
         validate : newState
       })
     }
+  }
+
+  onLastNameChangeHandler = (e) => {
+    const newLastName = e.target.value
+    const newState = this.state.users
+    newState.lastname = newLastName
+    this.setState({
+      users : newState
+    })
   }
 
   onBirthDateChangeHandler (e) {
@@ -200,6 +228,7 @@ class Register extends Component {
               placeholder='Email'
               value={this.state.users.email}
               onChange={this.onEmailChangeHandler}
+              onBlur={this.onEmailOnBlur}
               />
           </div>
           <p className={`help ${this.state.validate.email.class}`}> {this.state.validate.email.msg}</p>
@@ -222,7 +251,7 @@ class Register extends Component {
               <button
                 className='button is-light'
                 onClick={this.prevHandling}>
-                Cancel
+                Batal
               </button>
             </div>
           </div>
@@ -231,7 +260,7 @@ class Register extends Component {
               <button
                 className='button is-info'
                 onClick={this.nextHandling}>
-                Next
+                Selanjutnya
               </button>
             </div>
           </div>
@@ -258,13 +287,13 @@ class Register extends Component {
     const datesOption = dates.map((date, i) =>
       <option value={date} key={i}>{date}</option>
     )
-    const FullNameField = this.state.users.fullname
+    const FirstNameField = this.state.users.firstname
     const BirtDateField = this.state.users.birth.date
     const BirtMonthField = this.state.users.birth.month
     const BirtYearField = this.state.users.birth.year
 
     let IsDisable = true
-    if (FullNameField.length > 3 && BirtDateField !== '' && BirtMonthField !== '' && BirtYearField !== '') {
+    if (FirstNameField.length > 3 && BirtDateField !== '' && BirtMonthField !== '' && BirtYearField !== '') {
       IsDisable = false
     }
 
@@ -272,17 +301,34 @@ class Register extends Component {
     return (
       <div>
         <div className='field'>
-          <label htmlFor='fullname' className='label'>Full Name</label>
-          <div className={`control ${this.state.validate.fullname.class}`}>
-            <input
-              className='input'
-              type='text'
-              placeholder='Full Name'
-              value={this.state.users.fullname}
-              onChange={this.onFullNameChangeHandler}
-                            />
+          <div className='coloumns is-mobile'>
+            <div className='is-6'>
+              <label htmlFor='fullname' className='label'>Nama Depan</label>
+              <div className={`control ${this.state.validate.firstname.class}`}>
+                <input
+                  className='input'
+                  type='text'
+                  placeholder='Jhon'
+                  value={this.state.users.firstname}
+                  onChange={this.onFirstNameChangeHandler}
+                  />
+              </div>
+              <p className={`help ${this.state.validate.firstname.class}`}> {this.state.validate.firstname.msg}</p>
+            </div>
+            <div className='is-6'>
+              <label htmlFor='fullname' className='label'>Nama Belakang</label>
+              <div className={`control ${this.state.validate.firstname.class}`}>
+                <input
+                  className='input'
+                  type='text'
+                  placeholder='Smith'
+                  value={this.state.users.lastname}
+                  onChange={this.onLastNameChangeHandler}
+                  />
+              </div>
+              <p className={`help ${this.state.validate.firstname.class}`}> {this.state.validate.firstname.msg}</p>
+            </div>
           </div>
-          <p className={`help ${this.state.validate.fullname.class}`}> {this.state.validate.fullname.msg}</p>
         </div>
         <div className='field'>
           <div className='label'>Tanggal Lahir</div>
@@ -333,7 +379,7 @@ class Register extends Component {
                 <button
                   className='button is-light'
                   onClick={this.prevHandling}>
-                  Cancel
+                  Kembali
                 </button>
               </div>
             </div>
@@ -342,7 +388,7 @@ class Register extends Component {
                 <button
                   className='button is-info'
                   onClick={this.nextHandling}>
-                  Next
+                  Daftar
                 </button>
               </div>
             </div>
