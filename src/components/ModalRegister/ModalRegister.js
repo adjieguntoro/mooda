@@ -45,7 +45,7 @@ class ModalRegister extends Component {
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
                   />
-              <Link to='/register' className='button  login-button button-email'>
+              <Link to='/register'className='button  login-button button-email'>
                 <span>Daftar dengan Email</span>
               </Link>
             </div>
