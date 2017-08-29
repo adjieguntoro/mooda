@@ -187,6 +187,25 @@ class Register extends Component {
     })
   }
 
+  submitHandling = () => {
+    const users = this.state.users
+    console.log(users)
+    fetch('https://mooda-api.herokuapp.com/api/v1/users/users', {
+      method : 'POST',
+      headers : {
+        'Accept' : 'application/json',
+        'Content-Type' : 'application/json',
+      },
+      body: JSON.stringify(this.state.users)
+    })
+    .then((res) => {
+      browserHistory.push('/thankyou')
+    })
+    .catch((res) => {
+      console.log(res)
+    })
+  }
+
   validateEmail (email) {
     const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/
     return re.test(email)
@@ -387,7 +406,7 @@ class Register extends Component {
               <div className={`"control ${IsDisabled} `}>
                 <button
                   className='button is-info'
-                  onClick={this.nextHandling}>
+                  onClick={this.submitHandling}>
                   Daftar
                 </button>
               </div>
