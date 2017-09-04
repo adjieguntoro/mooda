@@ -3,25 +3,21 @@ import { Link } from 'react-router'
 import './ThankyouPage.scss'
 
 class ThankyouPage extends Component {
+  SocialShare = () => {
+    return (
+      <ul className='social-share'>
+        <li> FB </li>
+      </ul>
+    )
+  }
+
   render () {
     return (
-      <div className='container register-form'>
-        <div className='columns'>
-          <div className='column is-4 is-offset-4'>
-            <div>
-              <article className='message is-success'>
-                <div className='message-body'>
-                Terima kasih sudah mendaftar <br/>
-                Kamu berkesempatan untuk menjadi orang pertama yang
-                diberitahukan ketika Mooda siap untuk kamu gunakan. Kami akan mengirimkan kabar baik selanjutnya
-                melalui alamat email yang kamu daftarkan. <Link to='/'
-                      className=' is-info'>
-                      Kembali Ke Home
-                    </Link>
-                </div>
-              </article>
-            </div>
-          </div>
+      <div className='hero thankyou-page is-bold'>
+        <div className='hero-body'>
+          <h1 className='title '> Terima Kasih </h1>
+          <h2 className='subtitle'> Telah menjadi bagian dari generasi Mooda</h2>
+          <Link to='/' className='button is-light'> Kembali ke Home </Link>
         </div>
       </div>
     )
