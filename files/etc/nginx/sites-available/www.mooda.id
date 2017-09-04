@@ -1,0 +1,17 @@
+server {
+    listen 80;
+    server_name www.mooda.id mooda.local;
+    root /var/www/mooda/dist/;
+
+    access_log /var/log/nginx/mooda.access.log;
+    error_log  /var/log/nginx/mooda.error.log;
+
+    location ~ ^/mooda(/.*)?$ {
+        try_files $1 $1/ /index.html;
+        expires 24h;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
