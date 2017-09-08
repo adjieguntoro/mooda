@@ -13,7 +13,7 @@ class RegisterPanel extends Component {
     this.toogleModal = this.toogleModal.bind(this)
   }
 
-  toogleModal () {
+  toogleModal = () => {
     this.setState((prev, props) => {
       const newState = !prev.modal_state
       return { modal_state : newState }
@@ -24,7 +24,7 @@ class RegisterPanel extends Component {
   render () {
     return (
       <section className='is-white ' id='register-panel'>
-        <ModalRegister modal_state={this.state.modal_state} onClose={this.toogleModal}/>
+        <ModalRegister modal_state={this.state.modal_state} onClose={(e) => this.toogleModal()} />
         <div className='container'>
           <div className='colums '>
             <div className='column is-8 is-offset-2'>
@@ -43,9 +43,9 @@ class RegisterPanel extends Component {
                     </h6>
                   </div>
                   <div className='column is-3 '>
-                    <a href='#'
+                    <a
                       className='button is-warning is-regis is-vcentered'
-                      onClick={this.toogleModal}>
+                      onClick={(e) => this.toogleModal()}>
                       Daftar
                     </a>
                   </div>

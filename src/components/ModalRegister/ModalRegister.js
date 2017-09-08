@@ -6,17 +6,27 @@ import Logo from './../../images/logo_mooda_white_big.png'
 import FacebookLogin from 'react-facebook-login'
 import GoogleLogin from 'react-google-login'
 
-const responseFacebook = (response) => {
-  console.log(response)
-  browserHistory.push('thankyou')
-}
-
-const responseGoogle = (response) => {
-  console.log(response)
-  browserHistory.push('thankyou')
-}
-
 class ModalRegister extends Component {
+  responseFacebook = (response) => {
+    console.log(response)
+    browserHistory.push('thankyou')
+  }
+
+  responseFFacebook = (response) => {
+    console.log(response)
+    browserHistory.push('/')
+  }
+
+  responseGoogle = (response) => {
+    console.log(response)
+    browserHistory.push('thankyou')
+  }
+
+  responseFGoogle = (response) => {
+    console.log(response)
+    browserHistory.push('/')
+  }
+
   render () {
     const isActive = this.props.modal_state ? 'is-active' : ''
     return (
@@ -35,16 +45,17 @@ class ModalRegister extends Component {
               <FacebookLogin
                 appId='1966921796909853'
                 fields='name,email,picture'
-                callback={responseFacebook}
+                callback={(e) => this.responseFacebook()}
                 textButton='Daftar dengan Facebook'
                 cssClass='button  login-button button-fb' />
+
               <GoogleLogin
                 clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
                 buttonText='Daftar dengan Google'
                 className='button login-button button-gl'
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                  />
+                onSuccess={(e) => this.responseGoogle()}
+                onFailure={(e) => this.responseFGoogle()} />
+                
               <Link to='/register'className='button  login-button button-email'>
                 <span>Daftar dengan Email</span>
               </Link>
