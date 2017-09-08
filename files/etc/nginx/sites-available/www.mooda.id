@@ -6,7 +6,7 @@ server {
     access_log /var/log/nginx/mooda.access.log;
     error_log  /var/log/nginx/mooda.error.log;
 
-    location ~ ^/mooda(/.*)?$ {
+    location ~ ^(/.*)?$ {
         try_files $1 $1/ /index.html;
         expires 24h;
     }
