@@ -1,0 +1,32 @@
+.category-card {
+  border: 0;
+  position: relative;
+  text-align: center;
+  line-height: 1.2em;
+  color: #FFF;
+  // img {
+  //   min-width: 100%;
+  // }
+}
+
+.card-label {
+  width: 50%;
+  height: 50%;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.categories-title {
+  margin-bottom: 24px;
+  margin-top: 24px;
+
+  .title {
+    margin-bottom: 0;
+  }
+}
+
+.isSelected {
+  border: 1px solid red;
+}
