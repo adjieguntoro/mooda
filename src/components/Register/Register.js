@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, browserHistory } from 'react-router'
+import Logo from './../../images/mooda_logo_grey.png'
 import './Register.scss'
 
 class Register extends Component {
@@ -219,7 +220,10 @@ class Register extends Component {
 
     const IsDisabled = IsDisable ? 'is-disabled' : ''
     return (
-      <div>
+      <div className='register-holder'>
+        <div className='logo-register'>
+          <img src={Logo} width='112' height='28' />
+        </div>
         <div className='field'>
           <label htmlFor='email' className='label'>Email</label>
           <div className='control has-icons-left'>
@@ -439,12 +443,10 @@ class Register extends Component {
     }
 
     return (
-      <div className='container register-form'>
-        <div className='columns'>
-          <div className='column is-4 is-offset-4'>
-            { elementForm }
-          </div>
-        </div>
+      <div className='container register-container'>
+          <div className='register-form'>
+              { elementForm }
+            </div>
       </div>
     )
   }

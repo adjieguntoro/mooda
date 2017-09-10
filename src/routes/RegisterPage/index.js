@@ -8,10 +8,10 @@ export default (store) => ({
     require.ensure([], (require) => {
       /*  Webpack - use require callback to define
           dependencies for bundling   */
-      const Search = require('./components/RegisterPage').default
+      const Register = require('./components/RegisterPage').default
       /*  Add the reducer to the store on key 'counter'  */
       /*  Return getComponent   */
-      cb(null, Search)
+      cb(null, Register)
 
     /* Webpack named bundle   */
     }, 'register')
