@@ -1,20 +1,11 @@
-.footer {
-    margin-top:25px;
-    position: relative;
-    right: 0;
-    bottom: 0px;
-    left:0px;
-}
-
-.footer-menu {
-    
+.footer-menu {    
 
     ul {
         list-style: none;
-        margin-top:20px;
+        margin:0px;
         li {
             float: left;
-            margin-right:20px;
+            margin-right:10px;
         }
         
         a {
@@ -28,10 +19,13 @@
     }
 
     .social-media {
-        // float: right;
         img {
             width: 60%;
         }
     }
+}
+
+.content li+li {
+  margin-top: 0;
 }
 

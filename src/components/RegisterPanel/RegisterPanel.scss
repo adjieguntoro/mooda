@@ -1,6 +1,6 @@
 #register-panel {
     margin-top: -70px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     
     z-index: 999;
     a {
@@ -10,6 +10,14 @@
 
     .regiter-panel-body {
         padding:20px;
+    }
+    
+    .title {
+        font-size: 1.6rem;
+    }
+    .subtitle {
+        font-size: 1.4rem;
+        line-height: 1.8rem;
     }
 }
 

@@ -16,7 +16,7 @@ class Footer extends Component {
               <img src={LogoSmall} />
             </div>
           </div>
-          <div className='columns'>
+          <div className='columns is-desktop'>
             <div className='column is-9'>
               <div className='footer-menu'>
                 <ul>
