@@ -3,7 +3,8 @@ import CoreLayout from '../layouts/PageLayout/PageLayout'
 import Home, { IndexPl } from './Home'
 // import CounterRoute from './Counter'
 import Register from './RegisterPage'
-import Thankyou from './ThankyouPage/'
+import Thankyou from './ThankyouPage'
+import Category from './Category'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -15,7 +16,8 @@ export const createRoutes = (store) => ({
   childRoutes : [
     IndexPl,
     Register(store),
-    Thankyou(store)
+    Thankyou(store),
+    Category(store),
   ]
 })
 
