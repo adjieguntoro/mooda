@@ -209,6 +209,30 @@ class Register extends Component {
     }
   }
 
+  onSubmitHandling = () => {
+    this.setState(() => {
+      const newState = this.state.reg_step + 1
+      return { reg_step:newState }
+    })
+    const users = this.state.users
+    const url = 'https://mooda-api.herokuapp.com/api/v1/users/users'
+    fetch(url, {
+      method : 'POST',
+      headers : {
+        'Accept' : 'application/json',
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify(users)
+    })
+    .then(() => {
+      console.log(users)
+      browserHistory.push('thankyou')
+    })
+    .catch((e) => {
+      console.log(e)
+    })
+  }
+
   firstStep = () => {
     const EmailField = this.state.users.email
     const PassField = this.state.users.password
@@ -221,9 +245,6 @@ class Register extends Component {
     const IsDisabled = IsDisable ? 'is-disabled' : ''
     return (
       <div className='register-holder'>
-        <div className='logo-register'>
-          <img src={Logo} width='112' height='28' />
-        </div>
         <div className='field'>
           <label htmlFor='email' className='label'>Email</label>
           <div className='control has-icons-left'>
@@ -297,7 +318,7 @@ class Register extends Component {
     const BirtYearField = this.state.users.birth.year
 
     let IsDisable = true
-    if (FirstNameField.length > 3 && BirtDateField !== '' && BirtMonthField !== '' && BirtYearField !== '') {
+    if (FirstNameField.length >= 3 && BirtDateField !== '' && BirtMonthField !== '' && BirtYearField !== '') {
       IsDisable = false
     }
 
@@ -391,10 +412,23 @@ class Register extends Component {
               <div className={`"control ${IsDisabled} `}>
                 <button
                   className='button is-info'
-                  onClick={this.nextHandling}>
+                  onClick={this.onSubmitHandling}>
                   Daftar
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  LoadingStep = () => {
+    return (
+      <div>
+        <div className="columns">
+          <div className="column is-12">
+            <div className='sp sp-3balls'>
             </div>
           </div>
         </div>
@@ -439,14 +473,20 @@ class Register extends Component {
         elementForm = this.secondStep()
         break
       case 3:
+        elementForm = this.LoadingStep()
+        break
+      case 4:
         browserHistory.push('/thankyou')
     }
 
     return (
       <div className='container register-container'>
-          <div className='register-form'>
-              { elementForm }
-            </div>
+        <div className='register-form'>
+          <div className='logo-register'>
+            <img src={Logo} width='112' height='28' />
+          </div>
+          { elementForm }
+        </div>
       </div>
     )
   }

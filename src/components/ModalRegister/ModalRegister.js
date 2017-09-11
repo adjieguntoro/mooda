@@ -18,7 +18,7 @@ class ModalRegister extends Component {
   }
 
   responseGoogle = (response) => {
-    console.log(response)
+    console.log(response)    
     browserHistory.push('thankyou')
   }
 
@@ -53,7 +53,7 @@ class ModalRegister extends Component {
                 clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
                 buttonText='Daftar dengan Google'
                 className='button login-button button-gl'
-                onSuccess={(e) => this.responseGoogle()}
+                onSuccess={(e) => this.responseGoogle(e)}
                 onFailure={(e) => this.responseFGoogle()} />
                 
               <Link to='/register'className='button  login-button button-email'>
