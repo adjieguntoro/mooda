@@ -16,9 +16,9 @@ class ModalRegister extends Component {
         firstname : '',
         lastname : '',
         birth : {
-          date : '00',
-          month : '00',
-          year : '0000'
+          date : '01',
+          month : '01',
+          year : '1000'
         }
       }
     }
