@@ -105,7 +105,7 @@ class ModalRegister extends Component {
                 cssClass='button  login-button button-fb' />
 
               <GoogleLogin
-                clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
+                clientId='949121687454-lgdggdfhc9v2ohnpuo43ojn4t8318rso.apps.googleusercontent.com'
                 buttonText='Daftar dengan Google'
                 className='button login-button button-gl'
                 onSuccess={(e) => this.responseGoogle(e)}
