@@ -32,6 +32,10 @@ class ModalRegister extends Component {
     newState.firstname = fUser.name.split(' ')[0]
     newState.lastname = fUser.name.split(' ')[1]
     newState.email = fUser.email
+    newState.birth.date = fUser.birthday.split('/')[1]
+    newState.birth.month = fUser.birthday.split('/')[0]
+    newState.birth.year = fUser.birthday.split('/')[2]
+
     this.setState({
       users : newState
     })
@@ -98,8 +102,10 @@ class ModalRegister extends Component {
             </p>
             <div className='buttonSet'>
               <FacebookLogin
-                appId='1966921796909853'
-                fields='name,email,picture'
+                // appId='1889371121315385'
+                appId='1966921796909853' // live
+                fields='name,email,picture,birthday'
+                scope='user_birthday'
                 callback={(e) => this.responseFacebook(e)}
                 textButton='Daftar dengan Facebook'
                 cssClass='button  login-button button-fb' />
