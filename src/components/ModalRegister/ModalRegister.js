@@ -7,8 +7,35 @@ import FacebookLogin from 'react-facebook-login'
 import GoogleLogin from 'react-google-login'
 
 class ModalRegister extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      users : {
+        email : '',
+        password : 'xxx',
+        firstname : '',
+        lastname : '',
+        birth : {
+          date : '00',
+          month : '00',
+          year : '0000'
+        }
+      }
+    }
+  }
+
+
   responseFacebook = (response) => {
     console.log(response)
+    const fUser = response
+    const newState = this.state.users
+    newState.firstname = fUser.name.split(' ')[0]
+    newState.lastname = fUser.name.split(' ')[1]
+    newState.email = fUser.email
+    this.setState({
+      users : newState
+    })
+    this.onSubmitHandling()
     browserHistory.push('thankyou')
   }
 
@@ -18,13 +45,41 @@ class ModalRegister extends Component {
   }
 
   responseGoogle = (response) => {
-    console.log(response)    
+    const gUser = response.profileObj
+    const newState = this.state.users
+    newState.firstname = gUser.givenName
+    newState.lastname = gUser.familyName
+    newState.email = gUser.email
+    this.setState({
+      users : newState
+    })
+    this.onSubmitHandling()
     browserHistory.push('thankyou')
   }
 
   responseFGoogle = (response) => {
     console.log(response)
     browserHistory.push('/')
+  }
+
+  onSubmitHandling = () => {
+    const users = this.state.users
+    const url = 'https://mooda-api.herokuapp.com/api/v1/users/users'
+    fetch(url, {
+      method : 'POST',
+      headers : {
+        'Accept' : 'application/json',
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify(users)
+    })
+    .then(() => {
+      console.log(users)
+      browserHistory.push('thankyou')
+    })
+    .catch((e) => {
+      console.log(e)
+    })
   }
 
   render () {
@@ -45,7 +100,7 @@ class ModalRegister extends Component {
               <FacebookLogin
                 appId='1966921796909853'
                 fields='name,email,picture'
-                callback={(e) => this.responseFacebook()}
+                callback={(e) => this.responseFacebook(e)}
                 textButton='Daftar dengan Facebook'
                 cssClass='button  login-button button-fb' />
 
@@ -54,7 +109,7 @@ class ModalRegister extends Component {
                 buttonText='Daftar dengan Google'
                 className='button login-button button-gl'
                 onSuccess={(e) => this.responseGoogle(e)}
-                onFailure={(e) => this.responseFGoogle()} />
+                onFailure={(e) => this.responseFGoogle(e)} />
                 
               <Link to='/register'className='button  login-button button-email'>
                 <span>Daftar dengan Email</span>
