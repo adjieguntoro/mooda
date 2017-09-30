@@ -98,7 +98,6 @@ class ModalRegister extends Component {
           <div className='login-form-panel'>
             <p className='intro'>
               Daftar MOODA <br />
-              
             </p>
             <div className='buttonSet'>
               <FacebookLogin
